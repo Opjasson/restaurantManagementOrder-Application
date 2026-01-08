@@ -42,18 +42,20 @@ class SignInFragment : Fragment() {
             showBtn.visibility = View.GONE
             LAlertForm.visibility = View.GONE
 
+//            Toggle visibility password
             hideBtn.setOnClickListener {
                 showBtn.visibility = View.VISIBLE
                 hideBtn.visibility = View.GONE
 
                 LPasswordFormTxt.transformationMethod = HideReturnsTransformationMethod.getInstance()
             }
-
             showBtn.setOnClickListener {
                 hideBtn.visibility = View.VISIBLE
                 showBtn.visibility = View.GONE
                 LPasswordFormTxt.transformationMethod = PasswordTransformationMethod.getInstance()
             }
+
+
         }
 
 
