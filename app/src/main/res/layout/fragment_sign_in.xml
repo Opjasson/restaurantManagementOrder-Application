@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white_medium"
     android:padding="22dp"
     tools:context=".Fragment.SignInFragment">
 
@@ -19,20 +21,93 @@
             android:id="@+id/signInText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
             android:fontFamily="monospace"
             android:text="Sign In"
             android:textSize="42sp"
             android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/editTextText"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/white_full_corners_bg_form"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:paddingStart="8dp">
+
+            <ImageView
+                android:id="@+id/emailImg"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_gravity="center"
+                android:src="@drawable/mail" />
+
+            <EditText
+                android:id="@+id/R_emailFormTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Email"
+                android:inputType="text|textEmailAddress"
+                android:padding="8dp"
+                android:textColor="@color/black_medium"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/white_full_corners_bg_form"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:paddingStart="8dp">
+
+            <ImageView
+                android:id="@+id/passwordImg"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_gravity="center"
+                android:src="@drawable/password" />
+
+            <EditText
+                android:id="@+id/R_passwordFormTxt"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Password"
+                android:inputType="text|textPassword"
+                android:padding="8dp"
+                android:textColor="@color/black_medium"
+                android:textSize="24sp" />
+
+            <ImageView
+                android:id="@+id/hideBtn"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_gravity="center"
+                android:src="@drawable/hide" />
+
+            <ImageView
+                android:id="@+id/showBtn"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_gravity="center"
+                android:src="@drawable/show" />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/loginBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:text="Username"
-            android:textColor="@color/black"
-            android:textSize="24sp" />
+            android:background="@drawable/brown_full_corners_bg"
+            android:text="Login"
+            android:textColor="@color/black_medium"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
     </LinearLayout>
 
 </FrameLayout>

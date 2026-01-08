@@ -2,6 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="white_medium">#edf0ed</color>
+    <color name="white_bold">#cacfca</color>
     <color name="cream_bold">#FFD8DF</color>
     <color name="orange_light">#FEB05D</color>
+    <color name="black_medium">#525452</color>
 </resources>
