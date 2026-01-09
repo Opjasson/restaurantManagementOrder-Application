@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.text.method.TransformationMethod
+import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -62,6 +63,9 @@ class SignInFragment : Fragment() {
 
                 if (email.isEmpty() || password.isEmpty()) {
                     LAlertForm.text = "Oops..,formulir belum terisi"
+                    LAlertForm.visibility = View.VISIBLE
+                }else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                    LAlertForm.text = "Contoh : emailkamu@email.com"
                     LAlertForm.visibility = View.VISIBLE
                 }
             }

@@ -1,6 +1,7 @@
 package com.example.nasibakarjoss18_application.Fragment
 
 import android.os.Bundle
+import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -43,6 +44,9 @@ class ForgotPasswordFragment : Fragment() {
                 var email = FPEmailFormTxt.text.toString().trim()
                 if (email.isEmpty()){
                     FPAlertForm.text = "Oops..,formulir belum terisi"
+                    FPAlertForm.visibility = View.VISIBLE
+                }else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                    FPAlertForm.text = "Contoh : emailkamu@email.com"
                     FPAlertForm.visibility = View.VISIBLE
                 }
             }
