@@ -1,5 +1,6 @@
 package com.example.nasibakarjoss18_application.Fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
@@ -8,7 +9,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import com.example.nasibakarjoss18_application.Activity.AuthActivity
+import com.example.nasibakarjoss18_application.Activity.MainActivity
 import com.example.nasibakarjoss18_application.R
+import com.example.nasibakarjoss18_application.ViewModel.AuthViewModel
 import com.example.nasibakarjoss18_application.databinding.FragmentSignInBinding
 import com.example.nasibakarjoss18_application.databinding.FragmentSignUpBinding
 
@@ -26,6 +31,8 @@ class SignUpFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var _binding : FragmentSignUpBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel = AuthViewModel()
 
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -68,9 +75,27 @@ class SignUpFragment : Fragment() {
                 }else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
                     RAlertForm.text = "Contoh : emailkamu@email.com"
                     RAlertForm.visibility = View.VISIBLE
+                }else {
+                    viewModel.registrasiUser(username, email, password)
                 }
             }
+
         }
+
+        viewModel.registState.observe(this){
+            result ->
+            result.onSuccess {
+                message ->
+
+                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+                (requireActivity() as AuthActivity).moveToLoginPage()
+            }
+
+            result.onFailure {
+                Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+            }
+        }
+
 
 
     }

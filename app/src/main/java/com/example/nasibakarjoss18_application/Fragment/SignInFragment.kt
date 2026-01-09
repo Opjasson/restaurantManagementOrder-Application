@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.nasibakarjoss18_application.Activity.AuthActivity
 import com.example.nasibakarjoss18_application.R
+import com.example.nasibakarjoss18_application.ViewModel.AuthViewModel
 import com.example.nasibakarjoss18_application.databinding.FragmentSignInBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -26,6 +27,8 @@ private const val ARG_PARAM2 = "param2"
 class SignInFragment : Fragment() {
     private var _binding : FragmentSignInBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel = AuthViewModel()
 
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -57,6 +60,8 @@ class SignInFragment : Fragment() {
                 LPasswordFormTxt.transformationMethod = PasswordTransformationMethod.getInstance()
             }
 
+//           Buat akun Handle
+
             loginBtn.setOnClickListener {
                 var email = LEmailFormTxt.text.toString().trim()
                 var password = LPasswordFormTxt.text.toString().trim()
@@ -73,7 +78,6 @@ class SignInFragment : Fragment() {
             forgotPassTxt.setOnClickListener {
                 (requireActivity() as AuthActivity).moveToForgotPassword()
             }
-
 
 
         }

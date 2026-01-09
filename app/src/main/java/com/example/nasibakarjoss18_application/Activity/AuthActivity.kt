@@ -47,4 +47,8 @@ class AuthActivity : AppCompatActivity() {
     fun moveToForgotPassword() {
         binding.viewPager.setCurrentItem(3, true)
     }
+
+    fun moveToLoginPage() {
+        binding.viewPager.setCurrentItem(0, true)
+    }
 }
