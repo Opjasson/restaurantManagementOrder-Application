@@ -3,6 +3,7 @@ package com.example.nasibakarjoss18_application.Fragment
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
+import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -63,6 +64,9 @@ class SignUpFragment : Fragment() {
 
                 if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
                     RAlertForm.text = "Oops..,formulir belum terisi"
+                    RAlertForm.visibility = View.VISIBLE
+                }else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                    RAlertForm.text = "Contoh : emailkamu@email.com"
                     RAlertForm.visibility = View.VISIBLE
                 }
             }
