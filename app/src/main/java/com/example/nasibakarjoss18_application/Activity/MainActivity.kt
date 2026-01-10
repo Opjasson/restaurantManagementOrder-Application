@@ -2,19 +2,24 @@ package com.example.nasibakarjoss18_application.Activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nasibakarjoss18_application.Adapter.AuthPagerAdapter
+import com.example.nasibakarjoss18_application.Adapter.KategoriAdapter
 import com.example.nasibakarjoss18_application.R
+import com.example.nasibakarjoss18_application.ViewModel.KategoriViewModel
 import com.example.nasibakarjoss18_application.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
+    private val viewModel = KategoriViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,12 +29,18 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNav.selectedItemId = R.id.main
         setContentView(binding.root)
 
+        val kategoriAdapter = KategoriAdapter(mutableListOf())
+        binding.kategoriView.adapter = kategoriAdapter
+
+        viewModel.getKategori()
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
+        //        Navigate bottom setting
         binding.bottomNav.setOnItemSelectedListener { item ->
             if (item.itemId == binding.bottomNav.selectedItemId) {
                 binding.bottomNav.menu.findItem(R.id.main).icon =
@@ -43,6 +54,17 @@ class MainActivity : AppCompatActivity() {
                 R.id.search -> startActivity(Intent(this, SearchActivity::class.java))
             }
             true
+        }
+
+//        Tampilkan data dari viewModel
+        binding.loadKategori.visibility = View.VISIBLE
+        viewModel.kategoriState.observe(this){
+            list ->
+            binding.kategoriView.layoutManager = LinearLayoutManager(this@MainActivity,
+                LinearLayoutManager.HORIZONTAL,false
+            )
+            binding.kategoriView.adapter = KategoriAdapter(list)
+            binding.loadKategori.visibility = View.GONE
         }
     }
 
