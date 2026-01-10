@@ -50,4 +50,17 @@ class AuthRepository {
                 onResult(false, e.message.toString())
             }
     }
+
+//    Forgot password repository
+fun forgotPassword (
+    email : String,
+    callback: (Boolean) -> Unit
+) {
+    auth.sendPasswordResetEmail(email)
+        .addOnSuccessListener {
+            callback(true)
+        }
+
+}
+
 }
