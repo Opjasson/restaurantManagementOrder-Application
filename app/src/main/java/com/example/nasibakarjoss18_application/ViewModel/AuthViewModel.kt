@@ -47,5 +47,13 @@ class AuthViewModel : ViewModel() {
         }
     }
 
+//    Lupa password view model
+    private val _lupaPassState = MutableLiveData<Boolean>()
+    val lupaPassState : LiveData<Boolean> = _lupaPassState
 
+    fun lupaPassword (email : String) {
+        repository.lupaPassword(email) {
+            _lupaPassState.value = it
+        }
+    }
 }

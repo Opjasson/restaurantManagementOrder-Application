@@ -52,7 +52,7 @@ class AuthRepository {
     }
 
 //    Forgot password repository
-fun forgotPassword (
+fun lupaPassword (
     email : String,
     callback: (Boolean) -> Unit
 ) {

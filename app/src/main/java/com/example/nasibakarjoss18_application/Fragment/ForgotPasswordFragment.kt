@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.nasibakarjoss18_application.Activity.AuthActivity
 import com.example.nasibakarjoss18_application.R
+import com.example.nasibakarjoss18_application.ViewModel.AuthViewModel
 import com.example.nasibakarjoss18_application.databinding.FragmentForgotPasswordBinding
 import com.example.nasibakarjoss18_application.databinding.FragmentSignInBinding
 
@@ -24,6 +26,8 @@ private const val ARG_PARAM2 = "param2"
 class ForgotPasswordFragment : Fragment() {
     private var _binding : FragmentForgotPasswordBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel = AuthViewModel()
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -48,7 +52,17 @@ class ForgotPasswordFragment : Fragment() {
                 }else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
                     FPAlertForm.text = "Contoh : emailkamu@email.com"
                     FPAlertForm.visibility = View.VISIBLE
+                }else {
+                    viewModel.lupaPassword(email)
                 }
+            }
+        }
+
+        viewModel.lupaPassState.observe(this){
+            result ->
+            if (result) {
+                binding.FPAlertForm.text = "Silahkan cek email anda, untuk reset password"
+                (requireActivity() as AuthActivity).moveToLoginPage()
             }
         }
     }
