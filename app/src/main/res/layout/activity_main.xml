@@ -12,6 +12,8 @@
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white_medium"
+        android:contentDescription="@string/app_name"
         android:fillViewport="true">
 
         <LinearLayout
@@ -34,27 +36,38 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:background="@drawable/top_corners_white_bg"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="12dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"></LinearLayout>
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginRight="38dp"
+                    app:srcCompat="@drawable/home" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"></LinearLayout>
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginRight="38dp"
+                    app:srcCompat="@drawable/toggle" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"></LinearLayout>
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginRight="38dp"
+                    app:srcCompat="@drawable/bell" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"></LinearLayout>
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    app:srcCompat="@drawable/usertabs" />
+
             </LinearLayout>
         </com.google.android.material.bottomnavigation.BottomNavigationView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
