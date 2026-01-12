@@ -109,7 +109,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/dropdownLayout"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:background="@drawable/white_full_corners_bg_form"
             android:hint="Popular barang"
@@ -121,8 +121,9 @@
             <com.google.android.material.textfield.MaterialAutoCompleteTextView
                 android:id="@+id/dropdownMenu"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="none" />
+                android:layout_height="40dp"
+                android:inputType="none"
+                android:paddingStart="8dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout

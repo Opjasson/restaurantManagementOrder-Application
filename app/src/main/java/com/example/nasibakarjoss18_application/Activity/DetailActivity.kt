@@ -17,10 +17,6 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
     private val viewModel: PopularViewModel by viewModels()
 
-    //    variable put extra
-    private var id: Long = 0
-    private var nama: String = ""
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -34,7 +30,6 @@ class DetailActivity : AppCompatActivity() {
         }
 
         initFormItem()
-        getBundles()
     }
 
     fun initFormItem () {
@@ -43,6 +38,10 @@ class DetailActivity : AppCompatActivity() {
             binding.apply {
                 nameItemFormTxt.setText(data[0].nama.toString())
                 jumlahBarangForm.setText(data[0].jumlahBarang.toString())
+                descEdt.setText(data[0].deskripsi.toString())
+                descEdt.setText(data[0].deskripsi.toString())
+
+
 
                 plusBtn.setOnClickListener {
                     val current = jumlahBarangForm.text.toString().toIntOrNull() ?: 0
@@ -56,9 +55,9 @@ class DetailActivity : AppCompatActivity() {
                 }
             }
         }
-        viewModel.loadData(id)
+        viewModel.loadData(intent.getLongExtra("id", 1)!!)
 
-        val items = listOf("Makanan", "Minuman", "Snack")
+        val items = listOf("Populer", "Tidak")
 
         val adapter = ArrayAdapter(
             this,
@@ -76,7 +75,6 @@ class DetailActivity : AppCompatActivity() {
 
         binding.dropdownMenu.setOnItemClickListener { _, _, position, _ ->
             val selected = items[position]
-            Log.d("DROPDOWN", selected)
         }
 
         binding.backBtn.setOnClickListener {
@@ -84,9 +82,4 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun getBundles() {
-        //            Get context from put extra
-        id = intent.getLongExtra("id",0)!!
-        nama = intent.getStringExtra("nama")!!
-    }
 }
