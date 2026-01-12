@@ -108,6 +108,7 @@ class MainActivity : AppCompatActivity() {
                 layoutManager = GridLayoutManager(this@MainActivity, 2)
                 adapter = adapterPopular
             }
+
             // 4. OBSERVE DATA
             viewModelPopular.popularResult.observe(this) { list ->
                 binding.loadPopular.visibility = View.GONE

@@ -1,6 +1,8 @@
 package com.example.nasibakarjoss18_application.Activity
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.ArrayAdapter
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -28,6 +30,31 @@ class DetailActivity : AppCompatActivity() {
     }
 
     fun initFormItem () {
+        val items = listOf("Makanan", "Minuman", "Snack")
+
+        val adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_dropdown_item_1line,
+            items
+        )
+
+        if (binding.dropdownMenu.text.isNullOrEmpty()) {
+            binding.dropdownLayout.error = "Harus dipilih"
+        } else {
+            binding.dropdownLayout.error = null
+        }
+
+        binding.dropdownMenu.setAdapter(adapter)
+
+        binding.dropdownMenu.setOnItemClickListener { _, _, position, _ ->
+            val selected = items[position]
+            Log.d("DROPDOWN", selected)
+        }
+
+        binding.backBtn.setOnClickListener {
+            finish()
+        }
+
 
     }
 }

@@ -1,11 +1,14 @@
 package com.example.nasibakarjoss18_application.Adapter
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.nasibakarjoss18_application.Activity.DetailActivity
 import com.example.nasibakarjoss18_application.Domain.ItemsModel
 import com.example.nasibakarjoss18_application.databinding.ViewholderItemcardBinding
 
@@ -33,6 +36,10 @@ class PopularAdapter :
     }
 
     override fun onBindViewHolder(holder: Viewholder, position: Int) {
+        holder.binding.popularCard.setOnClickListener {
+            val intent = Intent(context, DetailActivity::class.java)
+            ContextCompat.startActivity(context, intent, null)
+        }
         val item = items[position]
         holder.binding.titleTxt.text = item.nama
         holder.binding.subtitleTxt.text = item.deskripsi
