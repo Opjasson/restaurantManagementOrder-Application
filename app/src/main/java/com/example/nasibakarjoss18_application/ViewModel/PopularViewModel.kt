@@ -1,10 +1,13 @@
 package com.example.nasibakarjoss18_application.ViewModel
 
+import android.content.Context
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.nasibakarjoss18_application.Domain.ItemsModel
+import com.example.nasibakarjoss18_application.Repository.CloudinaryRepository
 import com.example.nasibakarjoss18_application.Repository.PopularRepository
 
 class PopularViewModel : ViewModel() {
@@ -29,5 +32,17 @@ private val _itemResult = MutableLiveData<List<ItemsModel>>()
         repository.getItemByItemId(id) {
             _itemResult.value = it
         }
+    }
+
+    private val repo = CloudinaryRepository()
+    val imageUrl = MutableLiveData<String>()
+
+    fun upload(context: Context, uri: Uri) {
+        repo.uploadImageToCloudinary(
+            context,
+            uri,
+            onSuccess = { imageUrl.postValue(it) },
+            onError = { Log.d("ERROR", "Internal Error") }
+        )
     }
 }

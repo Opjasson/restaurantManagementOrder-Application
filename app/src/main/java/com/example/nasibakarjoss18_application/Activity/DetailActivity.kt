@@ -12,6 +12,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.bumptech.glide.Glide
 import com.example.nasibakarjoss18_application.R
 import com.example.nasibakarjoss18_application.ViewModel.PopularViewModel
 import com.example.nasibakarjoss18_application.databinding.ActivityDetailBinding
@@ -41,8 +42,11 @@ class DetailActivity : AppCompatActivity() {
         val pickImage =
             registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
                 uri?.let {
-//                    uploadImageToCloudinary(it)
                     Log.d("URL", it.toString())
+                    Glide.with(applicationContext).load(uri).into(binding.picItem)
+                    binding.editBtn.setOnClickListener {
+                        viewModel.upload(this, uri)
+                    }
                 }
             }
 
@@ -54,8 +58,7 @@ class DetailActivity : AppCompatActivity() {
                 jumlahBarangForm.setText(data[0].jumlahBarang.toString())
                 descEdt.setText(data[0].deskripsi.toString())
                 descEdt.setText(data[0].deskripsi.toString())
-
-
+                Glide.with(applicationContext).load(data[0].imgUrl).into(binding.picItem)
 
                 plusBtn.setOnClickListener {
                     val current = jumlahBarangForm.text.toString().toIntOrNull() ?: 0
@@ -71,6 +74,8 @@ class DetailActivity : AppCompatActivity() {
                 gambarBarangForm.setOnClickListener {
                     pickImage.launch("image/*")
                 }
+
+
             }
         }
         viewModel.loadData(intent.getLongExtra("id", 1)!!)

@@ -2,9 +2,21 @@ package com.example.nasibakarjoss18_application.Repository
 
 import android.content.Context
 import android.net.Uri
+import android.os.Handler
+import android.os.Looper
+import android.widget.Toast
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
+import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.Response
+import org.json.JSONObject
 import java.io.File
+import java.io.IOException
+
 
 class CloudinaryRepository {
     fun uriToFile(context: Context, uri: Uri): File {
@@ -19,8 +31,11 @@ class CloudinaryRepository {
         return file
     }
 
-    fun uploadImageToCloudinary(uri: Uri) {
-        val file = uriToFile(this, uri)
+    fun uploadImageToCloudinary(context: Context
+                                 ,uri: Uri
+                                ,onSuccess: (String) -> Unit
+                                ,onError: () -> Unit) {
+        val file = uriToFile(context, uri)
 
         val requestBody = MultipartBody.Builder()
             .setType(MultipartBody.FORM)
@@ -29,29 +44,23 @@ class CloudinaryRepository {
                 file.name,
                 file.asRequestBody("image/*".toMediaType())
             )
-            .addFormDataPart("upload_preset", "UPLOAD_PRESET_KAMU")
+            .addFormDataPart("upload_preset", "Cloudinary_my_first_time")
             .build()
 
         val request = Request.Builder()
-            .url("https://api.cloudinary.com/v1_1/CLOUD_NAME_KAMU/image/upload")
+            .url("https://api.cloudinary.com/v1_1/dqcnnluof/image/upload")
             .post(requestBody)
             .build()
 
         OkHttpClient().newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                runOnUiThread {
-                    Toast.makeText(this@MainActivity, "Upload gagal", Toast.LENGTH_SHORT).show()
-                }
+                onError()
             }
 
             override fun onResponse(call: Call, response: Response) {
-                val responseBody = response.body?.string()
-                val json = JSONObject(responseBody ?: "")
-                val imageUrl = json.getString("secure_url")
-
-                runOnUiThread {
-                    showImage(imageUrl)
-                }
+                val imageUrl = JSONObject(response.body!!.string())
+                    .getString("secure_url")
+                onSuccess(imageUrl)
             }
         })
     }
