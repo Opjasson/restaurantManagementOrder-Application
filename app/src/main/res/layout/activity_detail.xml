@@ -165,19 +165,19 @@
 
         </LinearLayout>
 
-        <EditText
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/gambarBarangForm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="28dp"
             android:background="@drawable/white_full_corners_bg_form"
             android:drawableEnd="@drawable/image"
-            android:ems="10"
-            android:hint="Gambar Barang"
-            android:inputType="text"
-            android:padding="12dp"
+            android:padding="8dp"
+            android:text="Gambar barang"
+            android:textAlignment="textStart"
             android:textColor="@color/black_medium"
-            android:textSize="20sp" />
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/editBtn"
