@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.nasibakarjoss18_application.Activity.DetailActivity
 import com.example.nasibakarjoss18_application.Domain.ItemsModel
 import com.example.nasibakarjoss18_application.databinding.ViewholderItemcardBinding
 
@@ -32,17 +34,20 @@ class ItemsAdapter(val items: MutableList<ItemsModel>):
         holder.binding.apply {
             titleTxt.text = item.nama.replaceFirstChar { it.uppercase() }
             subtitleTxt.text = item.deskripsi.replaceFirstChar { it.uppercase() }
+            Glide.with(context).load(item.imgUrl).into(pic)
         }
 
-//        holder.itemView.setOnClickListener {
-//            Handler(Looper.getMainLooper()).postDelayed({
-//                val intent = Intent(context, ShowLessonActivity::class.java).apply {
-//                    putExtra("id", item.lessonId)
-//                    putExtra("title", item.name)
-//                }
-//                ContextCompat.startActivity(context, intent, null)
-//            }, 500)
-//        }
+        holder.binding.popularCard.setOnClickListener {
+            Handler(Looper.getMainLooper()).postDelayed({
+                val intent = Intent(context, DetailActivity::class.java).apply {
+                    putExtra("id", item.itemId)
+                    putExtra("nama", item.nama)
+                }
+                ContextCompat.startActivity(context, intent, null)
+            }, 500)
+
+        }
+
     }
     override fun getItemCount(): Int = items.size
 

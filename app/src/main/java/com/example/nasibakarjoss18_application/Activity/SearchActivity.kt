@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.addTextChangedListener
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nasibakarjoss18_application.Adapter.ItemsAdapter
 import com.example.nasibakarjoss18_application.R
@@ -84,9 +85,9 @@ class SearchActivity : AppCompatActivity() {
 
         viewModel.searchResult.observe(this) {
                 list ->
-            binding.itemsView.layoutManager = LinearLayoutManager(this@SearchActivity,
-                LinearLayoutManager.VERTICAL, false
-            )
+            binding.itemsView.layoutManager = GridLayoutManager(this@SearchActivity, 2)
+            binding.loadItems.visibility = View.GONE
+
             itemsAdapter.updateData(list)
         }
 

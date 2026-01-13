@@ -85,7 +85,7 @@ class DetailActivity : AppCompatActivity() {
             editBtn.setOnClickListener {
                 viewModel.updateItem(
                     data[0].documentId,
-                    nameItemFormTxt.text.toString(),
+                    nameItemFormTxt.text.toString().toLowerCase(),
                     descEdt.text.toString(),
                     jumlahBarangForm.text.toString().toLongOrNull() ?: 0,
                     if (popular == "Populer") true else false,
