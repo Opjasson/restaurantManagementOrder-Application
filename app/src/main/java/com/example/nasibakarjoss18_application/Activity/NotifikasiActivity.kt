@@ -41,6 +41,7 @@ class NotifikasiActivity : AppCompatActivity() {
         }
 
         initAlatMakan()
+        initAlatMasak()
 
         //        Navigate bottom setting
         binding.bottomNav.setOnItemSelectedListener { item ->
@@ -86,6 +87,35 @@ class NotifikasiActivity : AppCompatActivity() {
 
         // 5. PANGGIL DATA
         viewModelPopular.getAlatMakan()
+    }
+
+//    get alat masak
+    fun initAlatMasak() {
+        var adapterAlatMasak: AlatMakanAdapter
+        var viewModelPopular: PopularViewModel
+
+        // 1. INIT VIEWMODEL
+        viewModelPopular = ViewModelProvider(this)[PopularViewModel::class.java]
+
+        // 2. INIT ADAPTER
+        adapterAlatMasak = AlatMakanAdapter()
+
+        // 3. SET RECYCLERVIEW
+        binding.alatMasakView.apply {
+            layoutManager = LinearLayoutManager(this@NotifikasiActivity,
+                LinearLayoutManager.VERTICAL, false
+            )
+            adapter = adapterAlatMasak
+        }
+
+        // 4. OBSERVE DATA
+        viewModelPopular.alatMasakResult.observe(this) { list ->
+            binding.loadAlatMasak.visibility = View.GONE
+            adapterAlatMasak.setData(list)
+        }
+
+        // 5. PANGGIL DATA
+        viewModelPopular.getAlatMasak()
     }
 
     //    bottom Nav Setting

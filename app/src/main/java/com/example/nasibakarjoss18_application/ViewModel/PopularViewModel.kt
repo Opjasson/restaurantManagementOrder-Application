@@ -88,7 +88,7 @@ private val _searchResult = MutableLiveData<MutableList<ItemsModel>>()
         }
     }
 
-//    Get item alat makan
+//    Get item alat makan <= 3
 
     private val _alatMakanResult = MutableLiveData<List<ItemsModel>>()
     val alatMakanResult: LiveData<List<ItemsModel>> = _alatMakanResult
@@ -97,6 +97,18 @@ private val _searchResult = MutableLiveData<MutableList<ItemsModel>>()
         repository.getItemAlatMakan() {
             Log.d("alatMakanAdapter", it.toString())
             _alatMakanResult.value = it
+        }
+    }
+
+//    Get item alat masak <=
+    //    Get item alat makan
+
+    private val _alatMasakResult = MutableLiveData<List<ItemsModel>>()
+    val alatMasakResult: LiveData<List<ItemsModel>> = _alatMasakResult
+
+    fun getAlatMasak() {
+        repository.getItemAlatMasak() {
+            _alatMasakResult.value = it
         }
     }
 }
