@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NasiBakarJoss18Application">
         <activity
+            android:name=".Activity.AccountActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.NotifikasiActivity"
             android:exported="false" />
         <activity
