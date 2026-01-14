@@ -38,10 +38,12 @@ class AccountActivity : AppCompatActivity() {
 
         userViewModel.userLogin.observe(this) { user ->
             user?.let {
-                binding.namaValueTxt.setText(it.username.toString())
+                binding.usernameValueTxt.setText(it.username.toString())
                 binding.emailValueTxt.setText(it.email.toString())
+                binding.roleValueTxt.setText(it.role.toString())
             }
         }
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
