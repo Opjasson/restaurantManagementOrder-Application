@@ -38,7 +38,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="8dp"
                     android:fontFamily="monospace"
-                    android:text="Perhatikan stok peralatan disini ..."
+                    android:text="Perhatikan stok peralatan hampir habis disini ..."
                     android:textColor="@color/black"
                     android:textSize="30sp" />
 

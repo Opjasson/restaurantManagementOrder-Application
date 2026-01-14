@@ -9,4 +9,5 @@
     <color name="black_medium">#525452</color>
     <color name="red_medium">#e33b57</color>
     <color name="primary_color">#70B9BE</color>
+    <color name="red_alertitem">#eb7d75</color>
 </resources>

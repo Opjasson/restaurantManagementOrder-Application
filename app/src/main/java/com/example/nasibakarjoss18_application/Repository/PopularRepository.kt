@@ -39,7 +39,7 @@ fun getItemByItemId(
         }
 }
 
-    //     get item alat makan
+    //     get item alat makan <=
     fun getItemAlatMakan(
         callback: (List<ItemsModel>) -> Unit
     ) {
@@ -48,7 +48,12 @@ fun getItemByItemId(
             .get()
             .addOnSuccessListener {
                 Log.d("alatMakan", "data : ${it.size()}")
-                callback(it.toObjects(ItemsModel::class.java).toMutableList())
+                val filtered = it.toObjects(ItemsModel::class.java)
+                    .filter { item ->
+                        item.jumlahBarang <= 3
+                    }
+
+                callback(filtered)
             }
     }
 
