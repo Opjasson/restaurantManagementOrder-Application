@@ -39,12 +39,29 @@ fun getItemByItemId(
         }
 }
 
-    //     get item alat makan <=
+    //     get item alat makan <= 3
     fun getItemAlatMakan(
         callback: (List<ItemsModel>) -> Unit
     ) {
         database.collection("items")
             .whereEqualTo("kategoriId", 2)
+            .get()
+            .addOnSuccessListener {
+                val filtered = it.toObjects(ItemsModel::class.java)
+                    .filter { item ->
+                        item.jumlahBarang <= 3
+                    }
+
+                callback(filtered)
+            }
+    }
+
+    //     get item alat masak <= 3
+    fun getItemAlatMasak(
+        callback: (List<ItemsModel>) -> Unit
+    ) {
+        database.collection("items")
+            .whereEqualTo("kategoriId", 0)
             .get()
             .addOnSuccessListener {
                 Log.d("alatMakan", "data : ${it.size()}")
