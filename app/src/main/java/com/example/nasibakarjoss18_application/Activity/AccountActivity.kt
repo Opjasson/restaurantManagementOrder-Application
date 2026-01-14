@@ -2,6 +2,7 @@ package com.example.nasibakarjoss18_application.Activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -12,11 +13,13 @@ import androidx.lifecycle.lifecycleScope
 import com.example.nasibakarjoss18_application.DataStore.UserPreference
 import com.example.nasibakarjoss18_application.R
 import com.example.nasibakarjoss18_application.ViewModel.AuthViewModel
+import com.example.nasibakarjoss18_application.ViewModel.UserViewModel
 import com.example.nasibakarjoss18_application.databinding.ActivityAccountBinding
 import kotlinx.coroutines.launch
 
 class AccountActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAccountBinding
+    private val userViewModel = UserViewModel()
     private lateinit var userPreference: UserPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +34,14 @@ class AccountActivity : AppCompatActivity() {
         binding.bottomNav.selectedItemId = R.id.account
         setContentView(binding.root)
 
+        userViewModel.getUserByUid()
+
+        userViewModel.userLogin.observe(this) { user ->
+            user?.let {
+                binding.namaValueTxt.setText(it.username.toString())
+                binding.emailValueTxt.setText(it.email.toString())
+            }
+        }
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)

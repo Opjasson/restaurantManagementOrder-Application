@@ -23,6 +23,7 @@ import com.example.nasibakarjoss18_application.R
 import com.example.nasibakarjoss18_application.ViewModel.AuthViewModel
 import com.example.nasibakarjoss18_application.ViewModel.KategoriViewModel
 import com.example.nasibakarjoss18_application.ViewModel.PopularViewModel
+import com.example.nasibakarjoss18_application.ViewModel.UserViewModel
 import com.example.nasibakarjoss18_application.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.api.Context
@@ -31,6 +32,7 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
     private val viewModel = KategoriViewModel()
+    private val userViewModel = UserViewModel()
 
     val userPrefence = UserPreference(this@MainActivity)
 
@@ -53,11 +55,24 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.getKategori()
 
+        userViewModel.getUserByUid()
+//        setup user
+
+        userViewModel.userLogin.observe(this) { user ->
+            Log.d("DATAUSER", user.toString())
+//            user?.let {
+//                binding.nameTxt.text = it.name
+//                binding.emailTxt.text = it.email
+//            }
+        }
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+
 
         //        Navigate bottom setting
         binding.bottomNav.setOnItemSelectedListener { item ->
@@ -98,11 +113,12 @@ class MainActivity : AppCompatActivity() {
 
         initPopular()
 
-        lifecycleScope.launch {
-            userPrefence.getUserId().collect{
-                Log.d("DATASTORE", "userId : ${it}")
-            }
-        }
+//        Get userId
+//        lifecycleScope.launch {
+//            userPrefence.getUserId().collect{
+//                Log.d("DATASTORE", "userId : ${it}")
+//            }
+//        }
 
     }
 
