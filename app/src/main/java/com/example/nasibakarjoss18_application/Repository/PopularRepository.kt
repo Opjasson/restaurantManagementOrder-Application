@@ -74,6 +74,23 @@ fun getItemByItemId(
             }
     }
 
+    //     get item alat cuci <= 3
+    fun getItemAlatCuci(
+        callback: (List<ItemsModel>) -> Unit
+    ) {
+        database.collection("items")
+            .whereEqualTo("kategoriId", 1)
+            .get()
+            .addOnSuccessListener {
+                val filtered = it.toObjects(ItemsModel::class.java)
+                    .filter { item ->
+                        item.jumlahBarang <= 3
+                    }
+
+                callback(filtered)
+            }
+    }
+
 //    Update item
 fun updateItem(
     itemId : String,
