@@ -72,6 +72,11 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+//    Logout handle
+fun logout () {
+    repository.logout()
+}
+
 //    Lupa password view model
     private val _lupaPassState = MutableLiveData<Boolean>()
     val lupaPassState : LiveData<Boolean> = _lupaPassState

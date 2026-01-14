@@ -12,11 +12,13 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nasibakarjoss18_application.Adapter.AuthPagerAdapter
 import com.example.nasibakarjoss18_application.Adapter.KategoriAdapter
 import com.example.nasibakarjoss18_application.Adapter.PopularAdapter
+import com.example.nasibakarjoss18_application.DataStore.UserPreference
 import com.example.nasibakarjoss18_application.R
 import com.example.nasibakarjoss18_application.ViewModel.AuthViewModel
 import com.example.nasibakarjoss18_application.ViewModel.KategoriViewModel
@@ -24,10 +26,13 @@ import com.example.nasibakarjoss18_application.ViewModel.PopularViewModel
 import com.example.nasibakarjoss18_application.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.api.Context
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
     private val viewModel = KategoriViewModel()
+
+    val userPrefence = UserPreference(this@MainActivity)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,6 +72,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.main -> startActivity(Intent(this, MainActivity::class.java))
                 R.id.search -> startActivity(Intent(this, SearchActivity::class.java))
                 R.id.notif -> startActivity(Intent(this, NotifikasiActivity::class.java))
+                R.id.account -> startActivity(Intent(this, AccountActivity::class.java))
             }
             true
         }
@@ -91,6 +97,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         initPopular()
+
+        lifecycleScope.launch {
+            userPrefence.getUserId().collect{
+                Log.d("DATASTORE", "userId : ${it}")
+            }
+        }
+
     }
 
 //    Get Data Popular

@@ -56,6 +56,11 @@ class AuthRepository {
             }
     }
 
+//    Logout repository
+fun logout () {
+    auth.signOut()
+}
+
 //    Forgot password repository
 fun lupaPassword (
     email : String,
