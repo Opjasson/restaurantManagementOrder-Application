@@ -57,7 +57,7 @@ fun getItemByItemId(
     }
 
     //     get item alat makan all
-    fun getItemAlatMakan(
+    fun getItemAlatMakanAll(
         callback: (List<ItemsModel>) -> Unit
     ) {
         database.collection("items")

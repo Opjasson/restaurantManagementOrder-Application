@@ -34,6 +34,8 @@ class MainActivity : AppCompatActivity() {
     private val viewModel = KategoriViewModel()
     private val userViewModel = UserViewModel()
 
+    private val viewModelItem = PopularViewModel()
+
     val userPrefence = UserPreference(this@MainActivity)
 
 
@@ -52,6 +54,13 @@ class MainActivity : AppCompatActivity() {
 
         val kategoriAdapter = KategoriAdapter(mutableListOf())
         binding.kategoriView.adapter = kategoriAdapter
+
+        viewModelItem.getAlatMakanAll()
+
+        viewModelItem.alatMakanAllResult.observe(this){
+            list ->
+            Log.d("DATAALL", list.toString())
+        }
 
         viewModel.getKategori()
 

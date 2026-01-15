@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.SearchActivity">
+    tools:context=".Activity.ItemByKategoriActivity">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
@@ -25,45 +25,15 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/kategoriTxt"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:padding="8dp">
-
-                <TextView
-                    android:id="@+id/searchTitleTxt"
-                    android:layout_width="280dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="8dp"
-                    android:fontFamily="monospace"
-                    android:text="Cari peralatan anda disini..."
-                    android:textColor="@color/black"
-                    android:textSize="30sp" />
-
-                <ImageView
-                    android:id="@+id/glassBtn"
-                    android:layout_width="71dp"
-                    android:layout_height="87dp"
-                    android:layout_gravity="center"
-                    app:srcCompat="@drawable/find" />
-
-            </LinearLayout>
-
-            <EditText
-                android:id="@+id/searchField"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/white_full_corners_bg_form"
-                android:elevation="5dp"
-                android:ems="10"
-                android:hint="Search Task..."
-                android:inputType="text"
-                android:padding="12dp"
-                android:textColor="@color/black" />
+                android:layout_marginRight="8dp"
+                android:fontFamily="monospace"
+                android:text="Cari peralatan anda disini..."
+                android:textColor="@color/black"
+                android:textSize="30sp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -86,7 +56,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/itemsView"
+                    android:id="@+id/itemsKategoriView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:paddingBottom="90dp"
@@ -101,24 +71,5 @@
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNav"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:menu="@menu/bottom_navigation_menu"
-            android:background="@drawable/top_corners_white_bg"
-            app:labelVisibilityMode="labeled"
-            >
-
-        </com.google.android.material.bottomnavigation.BottomNavigationView>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

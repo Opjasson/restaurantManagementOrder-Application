@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NasiBakarJoss18Application">
         <activity
+            android:name=".Activity.ItemByKategoriActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.AccountActivity"
             android:exported="false" />
         <activity
@@ -36,8 +39,7 @@
         </activity>
         <activity
             android:name=".Activity.MainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
     </application>
 
 </manifest>

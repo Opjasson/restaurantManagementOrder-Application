@@ -33,7 +33,7 @@
                 android:padding="8dp">
 
                 <TextView
-                    android:id="@+id/textView9"
+                    android:id="@+id/kategoriTxt"
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="8dp"
