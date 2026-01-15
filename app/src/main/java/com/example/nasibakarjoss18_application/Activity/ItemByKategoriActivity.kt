@@ -1,10 +1,15 @@
 package com.example.nasibakarjoss18_application.Activity
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.widget.addTextChangedListener
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.nasibakarjoss18_application.Adapter.ItemsAdapter
+import com.example.nasibakarjoss18_application.Adapter.PopularAdapter
 import com.example.nasibakarjoss18_application.R
 import com.example.nasibakarjoss18_application.ViewModel.PopularViewModel
 import com.example.nasibakarjoss18_application.databinding.ActivityItemByKategoriBinding
@@ -27,6 +32,24 @@ class ItemByKategoriActivity : AppCompatActivity() {
             insets
         }
 
+        initItems()
+
+    }
+
+    //    Inisialisasi item
+    private fun initItems() {
+        val itemsAdapter : PopularAdapter
+        itemsAdapter = PopularAdapter()
+
+        viewModel.getAlatMakanAll()
+
+        viewModel.alatMakanAllResult.observe(this) {
+                list ->
+            binding.itemsKategoriView.layoutManager = GridLayoutManager(this@ItemByKategoriActivity, 2)
+            binding.loadItems.visibility = View.GONE
+
+            itemsAdapter.setData(list)
+        }
 
     }
 }
