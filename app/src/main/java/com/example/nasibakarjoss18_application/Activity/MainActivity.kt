@@ -55,13 +55,6 @@ class MainActivity : AppCompatActivity() {
         val kategoriAdapter = KategoriAdapter(mutableListOf())
         binding.kategoriView.adapter = kategoriAdapter
 
-        viewModelItem.getAlatMakanAll()
-
-        viewModelItem.alatMakanAllResult.observe(this){
-            list ->
-            Log.d("DATAALL", list.toString())
-        }
-
         viewModel.getKategori()
 
         userViewModel.getUserByUid()

@@ -1,6 +1,7 @@
 package com.example.nasibakarjoss18_application.Activity
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -41,15 +42,22 @@ class ItemByKategoriActivity : AppCompatActivity() {
         val itemsAdapter : PopularAdapter
         itemsAdapter = PopularAdapter()
 
-        viewModel.getAlatMakanAll()
+        binding.kategoriTxt.text = intent.getStringExtra("nama")!!
 
+        binding.itemsKategoriView.layoutManager = GridLayoutManager(this@ItemByKategoriActivity, 2)
+
+        binding.itemsKategoriView.adapter = itemsAdapter
+
+        binding.backItemKategoriBtn.setOnClickListener {
+            finish()
+        }
         viewModel.alatMakanAllResult.observe(this) {
                 list ->
-            binding.itemsKategoriView.layoutManager = GridLayoutManager(this@ItemByKategoriActivity, 2)
+            Log.d("ALL", list.toString())
             binding.loadItems.visibility = View.GONE
-
             itemsAdapter.setData(list)
         }
+        viewModel.getAlatMakanAll(intent.getLongExtra("id", 1)!!)
 
     }
 }

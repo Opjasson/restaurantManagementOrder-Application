@@ -25,15 +25,29 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <TextView
-                android:id="@+id/kategoriTxt"
-                android:layout_width="280dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:fontFamily="monospace"
-                android:text="Cari peralatan anda disini..."
-                android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/backItemKategoriBtn"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="8dp"
+                    app:srcCompat="@drawable/back" />
+
+                <TextView
+                    android:id="@+id/kategoriTxt"
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:fontFamily="monospace"
+                    android:text="Cari peralatan anda disini..."
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+            </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

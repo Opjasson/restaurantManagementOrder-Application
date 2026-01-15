@@ -58,10 +58,11 @@ fun getItemByItemId(
 
     //     get item alat makan all
     fun getItemAlatMakanAll(
+        kategoriId : Long,
         callback: (List<ItemsModel>) -> Unit
     ) {
         database.collection("items")
-            .whereEqualTo("kategoriId", 2)
+            .whereEqualTo("kategoriId", kategoriId)
             .get()
             .addOnSuccessListener {
                 val filtered = it.toObjects(ItemsModel::class.java)
