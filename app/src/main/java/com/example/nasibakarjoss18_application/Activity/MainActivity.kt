@@ -103,6 +103,7 @@ class MainActivity : AppCompatActivity() {
             binding.loadKategori.visibility = View.GONE
         }
 
+//        Setting menu only admin
         authViewModel.getUserId().observe(this) { userId ->
             if (userId == "PZ2LOzb4IbTGW2ZqBnrEu7rgxBP2") {
                 binding.admBtn.visibility = View.VISIBLE
