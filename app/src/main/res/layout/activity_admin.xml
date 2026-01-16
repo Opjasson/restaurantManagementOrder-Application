@@ -57,7 +57,6 @@
                 android:layout_margin="15dp"
                 android:background="@color/white" />
 
-
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="match_parent"
@@ -65,8 +64,151 @@
                 android:layout_marginBottom="12dp"
                 android:text="Tambah item"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/ADM_namaItemForm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/white_full_corners_bg_form"
+                android:ems="10"
+                android:hint="Nama Barang"
+                android:inputType="text"
+                android:padding="12dp"
+                android:textColor="@color/black_medium"
+                android:textSize="20sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/white_full_corners_bg_form"
+                android:hint="Deskripsi Barang"
+                android:textColorHint="@color/black_medium"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ADM_descEdt"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:gravity="top|start"
+                    android:inputType="textMultiLine"
+                    android:maxLines="5"
+                    android:scrollbars="vertical"
+                    android:textColor="@color/black_medium" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/dropdownLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/white_full_corners_bg_form"
+                android:hint="Popular barang"
+                android:padding="8dp"
+                android:textColorHint="@color/black_medium"
+                app:boxBackgroundMode="outline"
+                app:endIconMode="dropdown_menu">
+
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/dropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:inputType="none"
+                    android:paddingStart="8dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/white_full_corners_bg_form"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/minBtn"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/minus" />
+
+                <EditText
+                    android:id="@+id/ADM_jumlahBarangForm"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/white_full_corners_bg"
+                    android:drawablePadding="8dp"
+                    android:ems="10"
+                    android:hint="Jumlah Barang"
+                    android:inputType="number"
+                    android:padding="12dp"
+                    android:textColor="@color/black_medium"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/plusBtn"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/plus" />
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/gambarBarangForm"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="28dp"
+                android:background="@drawable/white_full_corners_bg_form"
+                android:drawableEnd="@drawable/image"
+                android:padding="8dp"
+                android:text="Gambar barang"
+                android:textAlignment="textStart"
+                android:textColor="@color/black_medium"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/ADM_picItem"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="16dp"
+                tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/editBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/brown_full_corners_bg"
+                android:text="Submit"
+                android:textColor="@color/black_medium"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:text="Kelola akun user"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
 
         </LinearLayout>
