@@ -90,7 +90,7 @@ class SearchActivity : AppCompatActivity() {
             binding.itemsView.layoutManager = GridLayoutManager(this@SearchActivity, 2)
             binding.loadItems.visibility = View.GONE
 
-            itemsAdapter.updateData(list)
+            itemsAdapter.updateData(list.toMutableList())
         }
 
     }

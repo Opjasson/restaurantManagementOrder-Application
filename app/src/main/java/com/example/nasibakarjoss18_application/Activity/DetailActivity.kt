@@ -88,7 +88,7 @@ class DetailActivity : AppCompatActivity() {
                     descEdt.text.toString(),
                     jumlahBarangForm.text.toString().toLongOrNull() ?: 0,
                     if (popular == "Populer") true else false,
-                    imgUrl
+                    if (imgUrl == "") data.imgUrl else imgUrl,
                 )
             }
 

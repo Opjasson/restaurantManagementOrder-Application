@@ -40,7 +40,7 @@ class ItemsAdapter(val items: MutableList<ItemsModel>):
         holder.binding.popularCard.setOnClickListener {
             Handler(Looper.getMainLooper()).postDelayed({
                 val intent = Intent(context, DetailActivity::class.java).apply {
-                    putExtra("id", item.itemId)
+                    putExtra("id", item.documentId)
                     putExtra("nama", item.nama)
                 }
                 ContextCompat.startActivity(context, intent, null)

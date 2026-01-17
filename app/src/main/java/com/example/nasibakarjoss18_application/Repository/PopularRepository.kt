@@ -8,15 +8,14 @@ import com.google.firebase.firestore.FirebaseFirestore
 class PopularRepository {
     private val database = FirebaseFirestore.getInstance()
 
-//    get item based on popular
-    fun getPopularItem (
+    //    get item based on popular
+    fun getPopularItem(
         callback: (List<ItemsModel>) -> Unit
     ) {
         database.collection("items")
             .whereEqualTo("popular", true)
             .get()
-            .addOnSuccessListener {
-                    snapshots ->
+            .addOnSuccessListener { snapshots ->
                 val list = snapshots.documents.mapNotNull { doc ->
                     doc.toObject(ItemsModel::class.java)?.apply {
                         documentId = doc.id   // 🔥 isi documentId
@@ -26,29 +25,28 @@ class PopularRepository {
             }
     }
 
-//     get item by itemId
-fun getItemByItemId(
-    itemId: String,
-    callback: (ItemsModel?) -> Unit
-) {
-    database.collection("items")
-        .document(itemId)
-        .get()
-        .addOnSuccessListener {
-            document ->
-            if (document.exists()) {
-                val item = document.toObject(ItemsModel::class.java)?.apply {
-                    documentId = document.id // ✅ isi documentId
+    //     get item by itemId
+    fun getItemByItemId(
+        itemId: String,
+        callback: (ItemsModel?) -> Unit
+    ) {
+        database.collection("items")
+            .document(itemId)
+            .get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    val item = document.toObject(ItemsModel::class.java)?.apply {
+                        documentId = document.id // ✅ isi documentId
+                    }
+                    callback(item)
+                } else {
+                    callback(null)
                 }
-                callback(item)
-            } else {
+            }
+            .addOnFailureListener {
                 callback(null)
             }
-        }
-        .addOnFailureListener {
-            callback(null)
-        }
-}
+    }
 
     //     get item alat makan <= 3
     fun getItemAlatMakan(
@@ -69,7 +67,7 @@ fun getItemByItemId(
 
     //     get item alat makan all
     fun getItemAlatMakanAll(
-        kategoriId : Long,
+        kategoriId: Long,
         callback: (List<ItemsModel>) -> Unit
     ) {
         database.collection("items")
@@ -116,45 +114,45 @@ fun getItemByItemId(
             }
     }
 
-//    Update item
-fun updateItem(
-    itemId : String,
-    nama : String,
-    deskripsi : String,
-    jumlahBarang : Long,
-    popular : Boolean,
-    imgUrl : String,
-    onResult: (Boolean) -> Unit
-){
-    var data = mapOf(
-        "nama" to nama,
-        "deskripsi" to deskripsi,
-        "jumlahBarang" to jumlahBarang,
-        "popular" to popular,
-        "imgUrl" to imgUrl
-    )
-    database.collection("items")
-        .document(itemId)
-        .update(data)
-        .addOnSuccessListener {
-            Log.d("hasil", "isi : ${it}")
-            onResult(true)
-        }
-        .addOnFailureListener {
-            onResult(false)
-        }
-}
+    //    Update item
+    fun updateItem(
+        itemId: String,
+        nama: String,
+        deskripsi: String,
+        jumlahBarang: Long,
+        popular: Boolean,
+        imgUrl: String,
+        onResult: (Boolean) -> Unit
+    ) {
+        var data = mapOf(
+            "nama" to nama,
+            "deskripsi" to deskripsi,
+            "jumlahBarang" to jumlahBarang,
+            "popular" to popular,
+            "imgUrl" to imgUrl
+        )
+        database.collection("items")
+            .document(itemId)
+            .update(data)
+            .addOnSuccessListener {
+                Log.d("hasil", "isi : ${it}")
+                onResult(true)
+            }
+            .addOnFailureListener {
+                onResult(false)
+            }
+    }
 
     //    Add item
     fun createItem(
-        nama : String,
-        deskripsi : String,
-        jumlahBarang : Long,
-        popular : Boolean,
-        imgUrl : String,
-        kategoriId : Long,
+        nama: String,
+        deskripsi: String,
+        jumlahBarang: Long,
+        popular: Boolean,
+        imgUrl: String,
+        kategoriId: Long,
         onResult: (Boolean) -> Unit
-    ){
+    ) {
         var data = mapOf(
             "nama" to nama,
             "deskripsi" to deskripsi,
@@ -174,18 +172,23 @@ fun updateItem(
     }
 
     //    Get all items MainActivity
-    fun getAllItems(callback: (MutableList<ItemsModel>) -> Unit) {
+    fun getAllItems(callback: (List<ItemsModel>) -> Unit) {
         database.collection("items")
             .get()
-            .addOnSuccessListener {
-                callback(it.toObjects(ItemsModel::class.java).toMutableList())
+            .addOnSuccessListener { snapshots ->
+                val list = snapshots.documents.mapNotNull { doc ->
+                    doc.toObject(ItemsModel::class.java)?.apply {
+                        documentId = doc.id   // 🔥 isi documentId
+                    }
+                }
+                callback(list)
             }
     }
 
     //    Handle search items MainActivity
     fun searchItems(
         keyword: String,
-        callback: (MutableList<ItemsModel>) -> Unit
+        callback: (List<ItemsModel>) -> Unit
     ) {
         database
             .collection("items")
@@ -193,9 +196,13 @@ fun updateItem(
             .startAt(keyword)
             .endAt(keyword + "\uf8ff")
             .get()
-            .addOnSuccessListener {
-                Log.d("Data", "size : ${it.size()}")
-                callback(it.toObjects(ItemsModel::class.java).toMutableList())
+            .addOnSuccessListener { snapshots ->
+                val list = snapshots.documents.mapNotNull { doc ->
+                    doc.toObject(ItemsModel::class.java)?.apply {
+                        documentId = doc.id   // 🔥 isi documentId
+                    }
+                }
+                callback(list)
             }
     }
 }

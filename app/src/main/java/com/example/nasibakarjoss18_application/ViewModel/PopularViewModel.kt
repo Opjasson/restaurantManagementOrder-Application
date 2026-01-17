@@ -84,8 +84,8 @@ val createStatus = MutableLiveData<Boolean>()
     }
 
 //    Get all items
-private val _searchResult = MutableLiveData<MutableList<ItemsModel>>()
-    val searchResult: LiveData<MutableList<ItemsModel>> = _searchResult
+private val _searchResult = MutableLiveData<List<ItemsModel>>()
+    val searchResult: LiveData<List<ItemsModel>> = _searchResult
 
     fun searchValue(keyword : String) {
         if (keyword.isEmpty()) {
