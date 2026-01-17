@@ -64,6 +64,21 @@ private val _itemResult = MutableLiveData<List<ItemsModel>>()
         }
     }
 
+//    Create item
+val createStatus = MutableLiveData<Boolean>()
+
+    fun updateItem(
+        nama : String,
+        deskripsi : String,
+        jumlahBarang : Long,
+        popular : Boolean,
+        imgUrl : String,
+    ) {
+        repository.createItem(nama, deskripsi, jumlahBarang, popular, imgUrl) {
+            createStatus.value = it
+        }
+    }
+
 //    Get all items
 private val _searchResult = MutableLiveData<MutableList<ItemsModel>>()
     val searchResult: LiveData<MutableList<ItemsModel>> = _searchResult
