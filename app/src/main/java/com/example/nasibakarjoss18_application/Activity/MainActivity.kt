@@ -72,6 +72,9 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        binding.admBtn.setOnClickListener {
+            startActivity(Intent(this, AdminActivity::class.java))
+        }
 
 
         //        Navigate bottom setting
@@ -135,6 +138,7 @@ class MainActivity : AppCompatActivity() {
 
             // 4. OBSERVE DATA
             viewModelPopular.popularResult.observe(this) { list ->
+                Log.d("DATALIST", list.toString())
                 binding.loadPopular.visibility = View.GONE
                 adapterPopular.setData(list)
             }

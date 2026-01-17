@@ -10,32 +10,43 @@ class PopularRepository {
 
 //    get item based on popular
     fun getPopularItem (
-        callback: (MutableList<ItemsModel>) -> Unit
+        callback: (List<ItemsModel>) -> Unit
     ) {
         database.collection("items")
             .whereEqualTo("popular", true)
             .get()
             .addOnSuccessListener {
-                callback(it.toObjects(ItemsModel::class.java).toMutableList())
+                    snapshots ->
+                val list = snapshots.documents.mapNotNull { doc ->
+                    doc.toObject(ItemsModel::class.java)?.apply {
+                        documentId = doc.id   // 🔥 isi documentId
+                    }
+                }
+                callback(list)
             }
     }
 
 //     get item by itemId
 fun getItemByItemId(
-    itemId: Long,
-    callback: (List<ItemsModel>) -> Unit
+    itemId: String,
+    callback: (ItemsModel?) -> Unit
 ) {
     database.collection("items")
-        .whereEqualTo("itemId", itemId)
+        .document(itemId)
         .get()
         .addOnSuccessListener {
-            snapshots ->
-            val list = snapshots.documents.mapNotNull { doc ->
-                doc.toObject(ItemsModel::class.java)?.apply {
-                    documentId = doc.id   // 🔥 isi documentId
+            document ->
+            if (document.exists()) {
+                val item = document.toObject(ItemsModel::class.java)?.apply {
+                    documentId = document.id // ✅ isi documentId
                 }
+                callback(item)
+            } else {
+                callback(null)
             }
-            callback(list)
+        }
+        .addOnFailureListener {
+            callback(null)
         }
 }
 
@@ -126,6 +137,7 @@ fun updateItem(
         .document(itemId)
         .update(data)
         .addOnSuccessListener {
+            Log.d("hasil", "isi : ${it}")
             onResult(true)
         }
         .addOnFailureListener {
@@ -140,6 +152,7 @@ fun updateItem(
         jumlahBarang : Long,
         popular : Boolean,
         imgUrl : String,
+        kategoriId : Long,
         onResult: (Boolean) -> Unit
     ){
         var data = mapOf(
@@ -147,7 +160,8 @@ fun updateItem(
             "deskripsi" to deskripsi,
             "jumlahBarang" to jumlahBarang,
             "popular" to popular,
-            "imgUrl" to imgUrl
+            "imgUrl" to imgUrl,
+            "kategoriId" to kategoriId
         )
         database.collection("items")
             .add(data)

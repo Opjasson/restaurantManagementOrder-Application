@@ -32,15 +32,27 @@
                 android:orientation="horizontal"
                 android:padding="8dp">
 
-                <TextView
-                    android:id="@+id/kategoriTxt"
-                    android:layout_width="280dp"
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="8dp"
-                    android:fontFamily="monospace"
-                    android:text="Halaman admin"
-                    android:textColor="@color/black"
-                    android:textSize="30sp" />
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/backBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/back" />
+
+                    <TextView
+                        android:id="@+id/kategoriTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:fontFamily="monospace"
+                        android:text="Halaman admin"
+                        android:textColor="@color/black"
+                        android:textSize="30sp" />
+                </LinearLayout>
 
                 <ImageView
                     android:id="@+id/glassBtn"
@@ -124,6 +136,26 @@
                     android:paddingStart="8dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/dropdownLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/white_full_corners_bg_form"
+                android:hint="Kategori barang"
+                android:padding="8dp"
+                android:textColorHint="@color/black_medium"
+                app:boxBackgroundMode="outline"
+                app:endIconMode="dropdown_menu">
+
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/dropdownMenu2"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:inputType="none"
+                    android:paddingStart="8dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -164,7 +196,7 @@
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/gambarBarangForm"
+                android:id="@+id/gambarBarangBtn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="28dp"

@@ -26,10 +26,10 @@ fun getPopularItem () {
 }
 
 //    get item by itemId
-private val _itemResult = MutableLiveData<List<ItemsModel>>()
-    val itemResult: LiveData<List<ItemsModel>> = _itemResult
+private val _itemResult = MutableLiveData<ItemsModel>()
+    val itemResult: LiveData<ItemsModel> = _itemResult
 
-    fun loadData(id : Long) {
+    fun loadData(id : String) {
         repository.getItemByItemId(id) {
             _itemResult.value = it
         }
@@ -43,7 +43,10 @@ private val _itemResult = MutableLiveData<List<ItemsModel>>()
         repo.uploadImageToCloudinary(
             context,
             uri,
-            onSuccess = { imageUrl.postValue(it) },
+            onSuccess = {
+                Log.d("imgUrlView", it.toString())
+                imageUrl.postValue(it)
+                        },
             onError = { Log.d("ERROR", "Internal Error") }
         )
     }
@@ -67,14 +70,15 @@ private val _itemResult = MutableLiveData<List<ItemsModel>>()
 //    Create item
 val createStatus = MutableLiveData<Boolean>()
 
-    fun updateItem(
+    fun createItem(
         nama : String,
         deskripsi : String,
         jumlahBarang : Long,
         popular : Boolean,
         imgUrl : String,
+        kategoriId : Long
     ) {
-        repository.createItem(nama, deskripsi, jumlahBarang, popular, imgUrl) {
+        repository.createItem(nama, deskripsi, jumlahBarang, popular, imgUrl, kategoriId) {
             createStatus.value = it
         }
     }

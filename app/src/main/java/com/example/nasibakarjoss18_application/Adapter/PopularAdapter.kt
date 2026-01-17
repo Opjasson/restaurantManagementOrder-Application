@@ -40,7 +40,7 @@ class PopularAdapter :
 
         holder.binding.popularCard.setOnClickListener {
             val intent = Intent(context, DetailActivity::class.java).apply {
-                putExtra("id", item.itemId)
+                putExtra("id", item.documentId)
                 putExtra("nama", item.nama)
             }
             ContextCompat.startActivity(context, intent, null)

@@ -39,8 +39,8 @@ class DetailActivity : AppCompatActivity() {
         initFormItem()
     }
 
-    var imgUrl : String = ""
     fun initFormItem () {
+        var imgUrl : String = ""
         val pickImage =
             registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
                 uri?.let {
@@ -58,12 +58,13 @@ class DetailActivity : AppCompatActivity() {
 //        show data config
         viewModel.itemResult.observe(this){
                 data ->
+            Log.d("data", data.toString())
             binding.apply {
-                nameItemFormTxt.setText(data[0].nama.toString())
-                jumlahBarangForm.setText(data[0].jumlahBarang.toString())
-                descEdt.setText(data[0].deskripsi.toString())
-                descEdt.setText(data[0].deskripsi.toString())
-                Glide.with(applicationContext).load(data[0].imgUrl).into(binding.picItem)
+                nameItemFormTxt.setText(data.nama.toString())
+                jumlahBarangForm.setText(data.jumlahBarang.toString())
+                descEdt.setText(data.deskripsi.toString())
+                descEdt.setText(data.deskripsi.toString())
+                Glide.with(applicationContext).load(data.imgUrl).into(binding.picItem)
 
                 plusBtn.setOnClickListener {
                     val current = jumlahBarangForm.text.toString().toIntOrNull() ?: 0
@@ -80,31 +81,29 @@ class DetailActivity : AppCompatActivity() {
                     pickImage.launch("image/*")
                 }
 
-
-
             editBtn.setOnClickListener {
                 viewModel.updateItem(
-                    data[0].documentId,
+                    data.documentId,
                     nameItemFormTxt.text.toString().toLowerCase(),
                     descEdt.text.toString(),
                     jumlahBarangForm.text.toString().toLongOrNull() ?: 0,
                     if (popular == "Populer") true else false,
-                    if (imgUrl.isEmpty()) data[0].imgUrl else imgUrl
+                    imgUrl
                 )
             }
-
 
             }
 
             viewModel.updateStatus.observe(this){
-                success ->
+                    success ->
                 if (success) {
-                    Toast.makeText(this, "Update berhasil", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@DetailActivity, "Update berhasil", Toast.LENGTH_SHORT).show()
                     finish()
                 }
             }
         }
-        viewModel.loadData(intent.getLongExtra("id", 1)!!)
+
+        viewModel.loadData(intent.getStringExtra("id")!!)
 
 //    Setting drop down
         val items = listOf("Populer", "Tidak")
