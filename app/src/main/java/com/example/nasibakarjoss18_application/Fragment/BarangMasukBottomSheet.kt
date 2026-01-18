@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import com.example.nasibakarjoss18_application.R
+import com.example.nasibakarjoss18_application.ViewModel.PopularViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 // TODO: Rename parameter arguments, choose names that match
@@ -21,10 +23,13 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class BarangMasukBottomSheet(
+   private var barangId : String
 ) : BottomSheetDialogFragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    private val viewModel = PopularViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,33 +52,34 @@ class BarangMasukBottomSheet(
         val etJumlah = view.findViewById<EditText>(R.id.etJumlah)
         val btnSimpan = view.findViewById<Button>(R.id.btnSimpan)
 
-//        btnSimpan.setOnClickListener {
-//            val jumlah = etJumlah.text.toString().toInt()
-//
-//            tambahBarangMasuk(jumlah)
-//            dismiss()
-//        }
+        btnSimpan.setOnClickListener {
+            val jumlah = etJumlah.text.toString().toLong()
+
+            viewModel.addBarangItem(barangId,jumlah)
+            Toast.makeText(requireContext(), "Stock ditambahkan", Toast.LENGTH_SHORT).show()
+            dismiss()
+        }
 
         return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment BarangMasukBottomSheet.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            BarangMasukBottomSheet().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+//    companion object {
+//        /**
+//         * Use this factory method to create a new instance of
+//         * this fragment using the provided parameters.
+//         *
+//         * @param param1 Parameter 1.
+//         * @param param2 Parameter 2.
+//         * @return A new instance of fragment BarangMasukBottomSheet.
+//         */
+//        // TODO: Rename and change types and number of parameters
+//        @JvmStatic
+//        fun newInstance(param1: String, param2: String) =
+//            BarangMasukBottomSheet(barangId = ).apply {
+//                arguments = Bundle().apply {
+//                    putString(ARG_PARAM1, param1)
+//                    putString(ARG_PARAM2, param2)
+//                }
+//            }
+//    }
 }

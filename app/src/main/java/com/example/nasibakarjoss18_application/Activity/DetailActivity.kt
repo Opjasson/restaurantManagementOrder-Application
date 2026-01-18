@@ -38,7 +38,7 @@ class DetailActivity : AppCompatActivity() {
         }
 
         binding.tambahStockBtn.setOnClickListener {
-            val bottomSheet = BarangMasukBottomSheet()
+            val bottomSheet = BarangMasukBottomSheet(intent.getStringExtra("id")!!)
             bottomSheet.show(supportFragmentManager, "BarangMasuk")
         }
 

@@ -180,6 +180,27 @@ class PopularRepository {
             }
     }
 
+    //    Add stok barang
+    fun addStockItem(
+        barangId: String,
+        barang_masuk: Long,
+        onResult: (Boolean) -> Unit
+    ) {
+        var data = mapOf(
+            "barangId" to barangId,
+            "barang_masuk" to barang_masuk,
+            "createdAt" to Timestamp.now()
+        )
+        database.collection("barang_masuk")
+            .add(data)
+            .addOnSuccessListener {
+                onResult(true)
+            }
+            .addOnFailureListener {
+                onResult(false)
+            }
+    }
+
     //    Get all items MainActivity
     fun getAllItems(callback: (List<ItemsModel>) -> Unit) {
         database.collection("items")

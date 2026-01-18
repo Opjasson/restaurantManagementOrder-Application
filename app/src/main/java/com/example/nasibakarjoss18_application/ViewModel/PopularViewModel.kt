@@ -83,6 +83,20 @@ val createStatus = MutableLiveData<Boolean>()
         }
     }
 
+    //    Add barang_masuk
+    val addBarangStatus = MutableLiveData<Boolean>()
+
+    fun addBarangItem(
+        barangId : String,
+        barang_masuk : Long,
+    ) {
+        repository.addStockItem(barangId, barang_masuk) {
+            addBarangStatus.value = it
+        }
+    }
+
+
+
 //    Get all items
 private val _searchResult = MutableLiveData<List<ItemsModel>>()
     val searchResult: LiveData<List<ItemsModel>> = _searchResult

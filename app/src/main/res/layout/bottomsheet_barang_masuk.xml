@@ -24,15 +24,9 @@
         <EditText
             android:id="@+id/etJumlah"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="50dp"
             android:hint="Jumlah"
             android:inputType="number" />
-
-        <EditText
-            android:id="@+id/etKeterangan"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:hint="Keterangan" />
 
         <Button
             android:id="@+id/btnSimpan"
