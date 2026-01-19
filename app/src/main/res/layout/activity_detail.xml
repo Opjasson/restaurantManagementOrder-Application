@@ -83,6 +83,12 @@
                 android:layout_height="wrap_content"
                 android:text="+ Stok" />
 
+            <Button
+                android:id="@+id/kurangStockBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="- Stok" />
+
             <EditText
                 android:id="@+id/nameItemFormTxt"
                 android:layout_width="match_parent"
