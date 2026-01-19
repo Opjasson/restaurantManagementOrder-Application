@@ -37,6 +37,7 @@ class DetailActivity : AppCompatActivity() {
             insets
         }
 
+//        Handle button add barang masuk
         binding.tambahStockBtn.setOnClickListener {
             val bottomSheet = BarangMasukBottomSheet(intent.getStringExtra("id")!!)
             bottomSheet.show(supportFragmentManager, "BarangMasuk")
@@ -59,7 +60,8 @@ class DetailActivity : AppCompatActivity() {
             imgUrl = it.toString()
         }
 
-        var popular = ""
+        var popular : String = ""
+        var jumlahBarang : Long = 0
 
 //        show data config
         viewModel.itemResult.observe(this){
@@ -67,21 +69,8 @@ class DetailActivity : AppCompatActivity() {
             Log.d("data", data.toString())
             binding.apply {
                 nameItemFormTxt.setText(data.nama.toString())
-                jumlahBarangForm.setText(data.jumlahBarang.toString())
-                descEdt.setText(data.deskripsi.toString())
                 descEdt.setText(data.deskripsi.toString())
                 Glide.with(applicationContext).load(data.imgUrl).into(binding.picItem)
-
-                plusBtn.setOnClickListener {
-                    val current = jumlahBarangForm.text.toString().toIntOrNull() ?: 0
-                    val newJumlah = current + 1
-                    jumlahBarangForm.setText(newJumlah.toString())
-                }
-                minBtn.setOnClickListener {
-                    val current = jumlahBarangForm.text.toString().toIntOrNull() ?: 0
-                    val newJumlah = current - 1
-                    jumlahBarangForm.setText(newJumlah.toString())
-                }
 
                 gambarBarangForm.setOnClickListener {
                     pickImage.launch("image/*")
@@ -92,7 +81,7 @@ class DetailActivity : AppCompatActivity() {
                     data.documentId,
                     nameItemFormTxt.text.toString().toLowerCase(),
                     descEdt.text.toString(),
-                    jumlahBarangForm.text.toString().toLongOrNull() ?: 0,
+                    jumlahBarang,
                     if (popular == "Populer") true else false,
                     if (imgUrl == "") data.imgUrl else imgUrl,
                 )

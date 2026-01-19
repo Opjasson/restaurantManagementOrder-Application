@@ -63,6 +63,7 @@ private val _itemResult = MutableLiveData<ItemsModel>()
         imgUrl : String,
     ) {
         repository.updateItem(itemId, nama, deskripsi, jumlahBarang, popular, imgUrl) {
+            Log.d("updateStatus", it.toString())
             updateStatus.value = it
         }
     }

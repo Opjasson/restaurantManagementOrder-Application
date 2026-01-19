@@ -1,6 +1,7 @@
 package com.example.nasibakarjoss18_application.Fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -48,17 +49,31 @@ class BarangMasukBottomSheet(
             container,
             false
         )
-
         val etJumlah = view.findViewById<EditText>(R.id.etJumlah)
         val btnSimpan = view.findViewById<Button>(R.id.btnSimpan)
+//
 
-        btnSimpan.setOnClickListener {
-            val jumlah = etJumlah.text.toString().toLong()
+        viewModel.itemResult.observe(this){
+                data ->
+            Log.d("DATAKU", data.toString())
+//
+            btnSimpan.setOnClickListener {
+                val jumlah = etJumlah.text.toString().toLong()
+                viewModel.updateItem(
+                    barangId,
+                    data.nama.toString(),
+                    data.deskripsi.toString(),
+                    data.jumlahBarang.toLong() + jumlah,
+                    data.popular,
+                    data.imgUrl.toString()
+                )
+                viewModel.addBarangItem(barangId,jumlah)
+                Toast.makeText(requireContext(), "Stock ditambahkan", Toast.LENGTH_SHORT).show()
+                dismiss()
+            }
 
-            viewModel.addBarangItem(barangId,jumlah)
-            Toast.makeText(requireContext(), "Stock ditambahkan", Toast.LENGTH_SHORT).show()
-            dismiss()
         }
+        viewModel.loadData(barangId)
 
         return view
     }
