@@ -140,6 +140,7 @@ private val _searchResult = MutableLiveData<List<ItemsModel>>()
 
     fun getAlatMakanAll(kategoriId : Long) {
         repository.getItemAlatMakanAll(kategoriId) {
+            Log.d("DATAALATMAKAN", it.toString())
             _alatMakanAllResult.value = it
         }
     }

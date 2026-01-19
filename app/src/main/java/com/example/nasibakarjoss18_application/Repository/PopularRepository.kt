@@ -78,8 +78,13 @@ class PopularRepository {
             .whereEqualTo("kategoriId", kategoriId)
             .get()
             .addOnSuccessListener {
-                val filtered = it.toObjects(ItemsModel::class.java)
-                callback(filtered)
+                snapshots ->
+                val list = snapshots.documents.mapNotNull { doc ->
+                    doc.toObject(ItemsModel::class.java)?.apply {
+                        documentId = doc.id   // 🔥 isi documentId
+                    }
+                }
+                callback(list)
             }
     }
 

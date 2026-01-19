@@ -52,7 +52,7 @@ class ItemByKategoriActivity : AppCompatActivity() {
             finish()
         }
         viewModel.alatMakanAllResult.observe(this) {
-                list ->
+            list ->
             Log.d("ALL", list.toString())
             binding.loadItems.visibility = View.GONE
             itemsAdapter.setData(list)
