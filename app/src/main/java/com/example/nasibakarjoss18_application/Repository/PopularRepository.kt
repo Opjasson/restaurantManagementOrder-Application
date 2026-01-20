@@ -128,6 +128,26 @@ class PopularRepository {
             }
     }
 
+    //     get barang masuk
+//    fun getItemAlatCuci(
+//        callback: (List<ItemsModel>) -> Unit
+//    ) {
+//        database.collection("items")
+//            .whereEqualTo("kategoriId", 1)
+//            .get()
+//            .addOnSuccessListener {
+//                    snapshots ->
+//                val list = snapshots.documents.mapNotNull { doc ->
+//                    doc.toObject(ItemsModel::class.java)?.apply {
+//                        documentId = doc.id   // 🔥 isi documentId
+//                    }
+//                }.filter { item ->
+//                    item.jumlahBarang <= 3
+//                }
+//                callback(list)
+//            }
+//    }
+
     //    Update item
     fun updateItem(
         itemId: String,

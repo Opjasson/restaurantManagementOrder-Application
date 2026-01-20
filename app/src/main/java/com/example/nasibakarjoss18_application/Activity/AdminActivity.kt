@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.nasibakarjoss18_application.Adapter.PopularAdapter
 import com.example.nasibakarjoss18_application.Domain.HargaBBM
+import com.example.nasibakarjoss18_application.Domain.ItemsModel
 import com.example.nasibakarjoss18_application.R
 import com.example.nasibakarjoss18_application.ViewModel.PopularViewModel
 import com.example.nasibakarjoss18_application.ViewModel.UserViewModel
@@ -174,30 +175,27 @@ class AdminActivity : AppCompatActivity() {
     fun initTable () {
         val table = binding.tableHarga
 
-        val data = listOf(
-            HargaBBM(1, "Pertamax Turbo", "9,850"),
-            HargaBBM(2, "Pertamax", "9,000"),
-            HargaBBM(3, "Pertalite", "7,650"),
-            HargaBBM(4, "Premium", "6,450"),
-            HargaBBM(5, "Pertamina Dex", "10,200"),
-            HargaBBM(6, "Dexlite", "9,500"),
-            HargaBBM(7, "Bio Solar", "9,400")
-        )
 
-        binding.cetakBtn.setOnClickListener {
-            generatePdf(this, data)
+
+        viewModel.loadAllItems()
+
+        viewModel.searchResult.observe(this){
+            list ->
+            binding.cetakBtn.setOnClickListener {
+                generatePdf(this, list)
+            }
+            for (item in list) {
+                val row = TableRow(this)
+                row.setBackgroundColor(Color.WHITE)
+
+                row.addView(createCell(item.nama.toString(), Gravity.CENTER))
+                row.addView(createCell(item.jumlahBarang.toString(), Gravity.START))
+                row.addView(createCell(item.jumlahBarang.toString(), Gravity.END))
+
+                table.addView(row)
+            }
         }
 
-        for (item in data) {
-            val row = TableRow(this)
-            row.setBackgroundColor(Color.WHITE)
-
-            row.addView(createCell(item.no.toString(), Gravity.CENTER))
-            row.addView(createCell(item.nama, Gravity.START))
-            row.addView(createCell(item.harga, Gravity.END))
-
-            table.addView(row)
-        }
     }
 
     private fun createCell(text: String, gravity: Int): TextView {
@@ -209,7 +207,7 @@ class AdminActivity : AppCompatActivity() {
         }
     }
 
-    fun generatePdf(context: Context, data: List<HargaBBM>) {
+    fun generatePdf(context: Context, data: List<ItemsModel>) {
         val pdfDocument = PdfDocument()
         val paint = Paint()
         val titlePaint = Paint()
@@ -235,9 +233,9 @@ class AdminActivity : AppCompatActivity() {
 
         // Isi tabel
         for (user in data) {
-            canvas.drawText(user.no.toString(), 40f, y, paint)
-            canvas.drawText(user.nama, 200f, y, paint)
-            canvas.drawText(user.harga.toString(), 450f, y, paint)
+            canvas.drawText(user.nama.toString(), 40f, y, paint)
+            canvas.drawText(user.jumlahBarang.toString(), 200f, y, paint)
+            canvas.drawText(user.jumlahBarang.toString(), 450f, y, paint)
             y += 20f
         }
 
