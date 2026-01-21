@@ -4,6 +4,7 @@ import android.util.Log
 import com.example.nasibakarjoss18_application.Domain.BarangKeluarModel
 import com.example.nasibakarjoss18_application.Domain.BarangMasukModel
 import com.example.nasibakarjoss18_application.Domain.ItemsModel
+import com.example.nasibakarjoss18_application.Domain.StokAwalModel
 import com.example.nasibakarjoss18_application.Helper.ConvertDateTime
 import com.google.android.gms.common.api.internal.StatusCallback
 import com.google.firebase.Timestamp
@@ -169,15 +170,15 @@ class PopularRepository {
     fun getStokAwal(
         tanggal1: String,
         tanggal2: String,
-        callback: (List<BarangKeluarModel>) -> Unit
+        callback: (List<StokAwalModel>) -> Unit
     ) {
-        database.collection("barang_keluar")
+        database.collection("stok_awal")
             .whereGreaterThanOrEqualTo("createdAt", tanggal1)
             .whereLessThanOrEqualTo("createdAt", tanggal2)
             .orderBy("createdAt")
             .get()
             .addOnSuccessListener {
-                callback(it.toObjects(BarangKeluarModel::class.java))
+                callback(it.toObjects(StokAwalModel::class.java))
             }
     }
 
