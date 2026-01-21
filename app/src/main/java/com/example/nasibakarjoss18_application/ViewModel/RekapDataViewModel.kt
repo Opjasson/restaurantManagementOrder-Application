@@ -69,6 +69,7 @@ class RekapDataViewModel : ViewModel() {
             BarangRekapModel(
                 barangId = barang.documentId,
                 namaBarang = barang.nama,
+                stokAwal = barang.nama,
                 totalMasuk = masukMap[barang.documentId] ?: 0,
                 totalKeluar = keluarMap[barang.documentId] ?: 0
             )

@@ -165,6 +165,22 @@ class PopularRepository {
             }
     }
 
+    //         get stok awal
+    fun getStokAwal(
+        tanggal1: String,
+        tanggal2: String,
+        callback: (List<BarangKeluarModel>) -> Unit
+    ) {
+        database.collection("barang_keluar")
+            .whereGreaterThanOrEqualTo("createdAt", tanggal1)
+            .whereLessThanOrEqualTo("createdAt", tanggal2)
+            .orderBy("createdAt")
+            .get()
+            .addOnSuccessListener {
+                callback(it.toObjects(BarangKeluarModel::class.java))
+            }
+    }
+
     //    Update item
     fun updateItem(
         itemId: String,
