@@ -203,7 +203,6 @@ class PopularRepository {
             .document(itemId)
             .update(data)
             .addOnSuccessListener {
-                Log.d("hasil", "isi : ${it}")
                 onResult(true)
             }
             .addOnFailureListener {

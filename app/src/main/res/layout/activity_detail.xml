@@ -90,6 +90,31 @@
                 android:text="- Stok" />
 
             <EditText
+                android:id="@+id/jumlahStokForm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/white_full_corners_bg_form"
+                android:ems="10"
+                android:hint="Jumlah Stok"
+                android:inputType="text"
+                android:padding="12dp"
+                android:textColor="@color/black_medium"
+                android:textSize="20sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/addStokBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/brown_full_corners_bg"
+                android:text="Tambah"
+                android:textColor="@color/black_medium"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <EditText
                 android:id="@+id/nameItemFormTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

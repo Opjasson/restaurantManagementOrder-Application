@@ -1,6 +1,7 @@
 package com.example.nasibakarjoss18_application.Activity
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -68,7 +69,6 @@ class DetailActivity : AppCompatActivity() {
         }
 
         var popular : String = ""
-        var jumlahBarang : Long = 0
 
 //        show data config
         viewModel.itemResult.observe(this){
@@ -77,9 +77,12 @@ class DetailActivity : AppCompatActivity() {
             binding.apply {
                 nameItemFormTxt.setText(data.nama.toString())
                 descEdt.setText(data.deskripsi.toString())
+                jumlahStokForm.setText(data.jumlahBarang.toString())
                 Glide.with(applicationContext).load(data.imgUrl).into(binding.picItem)
 
+                picItem.visibility = View.GONE
                 gambarBarangForm.setOnClickListener {
+                    picItem.visibility = View.VISIBLE
                     pickImage.launch("image/*")
                 }
 
@@ -88,11 +91,25 @@ class DetailActivity : AppCompatActivity() {
                     data.documentId,
                     nameItemFormTxt.text.toString().toLowerCase(),
                     descEdt.text.toString(),
-                    jumlahBarang,
+                    data.jumlahBarang,
                     if (popular == "Populer") true else false,
                     if (imgUrl == "") data.imgUrl else imgUrl,
                 )
             }
+
+                addStokBtn.setOnClickListener {
+                    viewModel.addStokAwal(data.documentId, jumlahStokForm.text.toString().toLong())
+                    viewModel.updateItem(
+                        data.documentId,
+                        nameItemFormTxt.text.toString().toLowerCase(),
+                        descEdt.text.toString(),
+                        jumlahStokForm.text.toString().toLong(),
+                        if (popular == "Populer") true else false,
+                        if (imgUrl == "") data.imgUrl else imgUrl,
+                    )
+                    Toast.makeText(this@DetailActivity, "Stok diperbarui", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
 
             }
 
@@ -128,8 +145,6 @@ class DetailActivity : AppCompatActivity() {
             val selected = items[position]
             popular = selected
         }
-
-
 
         binding.backBtn.setOnClickListener {
             finish()
