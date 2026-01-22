@@ -46,6 +46,7 @@ class PopularAdapter :
             ContextCompat.startActivity(context, intent, null)
         }
         holder.binding.titleTxt.text = item.nama.replaceFirstChar { it.uppercase() }
+        holder.binding.jumlahtxtCard.text = item.jumlahBarang.toString() + "X"
         holder.binding.subtitleTxt.text = item.deskripsi.replaceFirstChar { it.uppercase() }
 
         Glide.with(context).load(item.imgUrl).into(holder.binding.pic)
