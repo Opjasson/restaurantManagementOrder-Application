@@ -72,7 +72,7 @@ private val _itemResult = MutableLiveData<ItemsModel>()
     }
 
 //    Create item
-val createStatus = MutableLiveData<Boolean>()
+val createStatus = MutableLiveData<String>()
 
     fun createItem(
         nama : String,
@@ -82,8 +82,13 @@ val createStatus = MutableLiveData<Boolean>()
         imgUrl : String,
         kategoriId : Long
     ) {
-        repository.createItem(nama, deskripsi, popular, imgUrl, kategoriId) {
-            createStatus.value = it
+        repository.createItem(nama, deskripsi,jumlahBarang, popular, imgUrl, kategoriId) {
+            success, documentId ->
+            if (success){
+                createStatus.value = documentId
+            }else {
+                Log.d("FAILEDCREATE", "FAILED-CREATE ITEM")
+            }
         }
     }
 
@@ -96,6 +101,18 @@ val createStatus = MutableLiveData<Boolean>()
     ) {
         repository.addStockItem(barangId, barang_masuk) {
             addBarangStatus.value = it
+        }
+    }
+
+    //    Add stok awal
+    val addStockAwalStatus = MutableLiveData<Boolean>()
+
+    fun addStokAwal(
+        barangId : String,
+        stok_awal : Long,
+    ) {
+        repository.addStockAwal(barangId, stok_awal) {
+            addStockAwalStatus.value = it
         }
     }
 

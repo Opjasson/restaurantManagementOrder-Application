@@ -111,8 +111,10 @@ class AdminActivity : AppCompatActivity() {
         }
 
         viewModel.createStatus.observe(this){
-                success ->
-            if (success) {
+                documentId ->
+            if (!documentId.isEmpty()) {
+                viewModel.addStokAwal(documentId,
+                    binding.ADMJumlahBarangForm.text.toString().toLong())
                 Toast.makeText(this, "Data berhasil dibuat", Toast.LENGTH_SHORT).show()
                 finish()
             }
@@ -176,11 +178,12 @@ class AdminActivity : AppCompatActivity() {
                 viewModel.createItem(
                     binding.ADMNamaItemForm.text.toString().toLowerCase(),
                     binding.ADMDescEdt.text.toString(),
-                    binding.ADMJumlahBarangForm.text.toString().toLongOrNull() ?: 0,
+                    binding.ADMJumlahBarangForm.text.toString().toLong(),
                     if (popular == "Populer") true else false,
                     imgUrl,
                     kategoriId2,
                 )
+
             }
 
         }

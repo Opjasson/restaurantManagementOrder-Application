@@ -215,21 +215,45 @@ class PopularRepository {
     fun createItem(
         nama: String,
         deskripsi: String,
+        jumlah_barang: Long,
         popular: Boolean,
         imgUrl: String,
         kategoriId: Long,
-        onResult: (Boolean) -> Unit
+        onResult: (Boolean, String) -> Unit
     ) {
         var data = mapOf(
             "nama" to nama,
             "deskripsi" to deskripsi,
-            "jumlahBarang" to 0,
+            "jumlahBarang" to jumlah_barang,
             "popular" to popular,
             "imgUrl" to imgUrl,
             "kategoriId" to kategoriId,
             "createdAt" to Timestamp.now()
         )
         database.collection("items")
+            .add(data)
+            .addOnSuccessListener {
+                documentRef ->
+                onResult(true, documentRef.id)
+            }
+            .addOnFailureListener {
+                onResult(false, "")
+            }
+    }
+
+    //    tambah stok awal
+    fun addStockAwal(
+        barangId: String,
+        stok_awal: Long,
+        onResult: (Boolean) -> Unit
+    ) {
+        val dateCreatedAt = convertDate.formatTimestamp(Timestamp.now())
+        var data = mapOf(
+            "barangId" to barangId,
+            "jumlah" to stok_awal,
+            "createdAt" to dateCreatedAt
+        )
+        database.collection("stok_awal")
             .add(data)
             .addOnSuccessListener {
                 onResult(true)
