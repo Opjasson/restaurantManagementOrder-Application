@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.nasibakarjoss18_application.Activity.NotaTransaksiActivity
 import com.example.nasibakarjoss18_application.Domain.TransaksiWithCartModel
 import com.example.nasibakarjoss18_application.databinding.ViewHolderCardtransaksiBinding
 
@@ -38,11 +39,11 @@ class CardHistoryAdapter(val items: MutableList<TransaksiWithCartModel>):
 
 
 
-//        holder.binding.historyView.setOnClickListener {
-//            val intent = Intent(context, NotaTransaksiActivity::class.java)
-//            intent.putExtra("object", items[position])
-//            context.startActivity(intent)
-//        }
+        holder.binding.historyView.setOnClickListener {
+            val intent = Intent(context, NotaTransaksiActivity::class.java)
+            intent.putExtra("object", items[position])
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int =items.size

@@ -84,7 +84,7 @@ class CartActivity : AppCompatActivity() {
         navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.menu_home -> {
-                    startActivity(Intent(this, MainActivity::class.java))
+                    startActivity(Intent(this, CashierActivity::class.java))
                 }
                 R.id.menu_manageProduct -> {
                     startActivity(Intent(this, ManageProductActivity::class.java))
