@@ -92,9 +92,9 @@ class CartActivity : AppCompatActivity() {
                 R.id.menu_cart -> {
                     startActivity(Intent(this, CartActivity::class.java))
                 }
-//                R.id.menu_history -> {
-//                    startActivity(Intent(this, HistoryTransaksiActivity::class.java))
-//                }
+                R.id.menu_history -> {
+                    startActivity(Intent(this, HistoryPesananActivity::class.java))
+                }
 //                R.id.menu_laporan -> {
 //                    startActivity(Intent(this, LaporanTransactionActivity::class.java))
 //                }
@@ -105,26 +105,26 @@ class CartActivity : AppCompatActivity() {
     }
 
     private fun initHandleBuy () {
-        binding.picTf.visibility = View.GONE
+//        binding.picTf.visibility = View.GONE
 
         var imgUrl : String = ""
 
-        val pickImage =
-            registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-                uri?.let {
-                    Glide.with(applicationContext).load(uri).into(binding.picTf)
-                    viewModelImg.upload(this, uri)
-                }
-            }
-
-        viewModelImg.imageUrl.observe(this){
-            imgUrl = it.toString()
-        }
-
-        binding.btnUpload.setOnClickListener {
-            binding.picTf.visibility = View.VISIBLE
-            pickImage.launch("image/*")
-        }
+//        val pickImage =
+//            registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+//                uri?.let {
+//                    Glide.with(applicationContext).load(uri).into(binding.picTf)
+//                    viewModelImg.upload(this, uri)
+//                }
+//            }
+//
+//        viewModelImg.imageUrl.observe(this){
+//            imgUrl = it.toString()
+//        }
+//
+//        binding.btnUpload.setOnClickListener {
+//            binding.picTf.visibility = View.VISIBLE
+//            pickImage.launch("image/*")
+//        }
 
 //        get Cart by transaksi
         lifecycleScope.launch {
@@ -149,8 +149,8 @@ class CartActivity : AppCompatActivity() {
                     viewModelTransaksi.updateTransaksi(
                         list[0].transaksiId,
                         totalHarga.toLong(),
-                        binding.etNote.text.toString(),
-                        imgUrl
+                        "",
+                        ""
                     )
 
                     viewModelTransaksi.updateStatus.observe(this) {

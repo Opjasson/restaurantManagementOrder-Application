@@ -59,20 +59,20 @@ class CashierActivity : AppCompatActivity() {
         userViewModel.getUserByUid()
 
         userViewModel.userLogin.observe(this) { user ->
-            user?.let {
-                val headerView = binding.navigationView.getHeaderView(0)
-
-
-
-                headerView.findViewById<TextView>(R.id.tvNameHeader).text = user?.username
-                headerView.findViewById<TextView>(R.id.tvEmailHeader).text = user?.email
-
-                val menu = binding.navigationView.menu
-                if (user?.documentId != "JTER5kKcDvRerpk6c9pJYGxhd7D2") {
-                    menu.findItem(R.id.menu_laporan)?.isVisible = false
-                    menu.findItem(R.id.menu_manageProduct)?.isVisible = false
-                }
-            }
+//            user?.let {
+//                val headerView = binding.navigationView.getHeaderView(0)
+//
+//
+//
+//                headerView.findViewById<TextView>(R.id.tvNameHeader).text = user?.username
+//                headerView.findViewById<TextView>(R.id.tvEmailHeader).text = user?.email
+//
+//                val menu = binding.navigationView.menu
+//                if (user?.documentId != "JTER5kKcDvRerpk6c9pJYGxhd7D2") {
+//                    menu.findItem(R.id.menu_laporan)?.isVisible = false
+//                    menu.findItem(R.id.menu_manageProduct)?.isVisible = false
+//                }
+//            }
 
 
 
@@ -98,53 +98,6 @@ class CashierActivity : AppCompatActivity() {
 
         var kategori : String = "makanan"
         viewModel.getProductByKategori(kategori)
-
-////        Button kategori makanan handle
-//        binding.makananBtn.setOnClickListener {
-//            kategori = "makanan"
-//            binding.makananBtn.backgroundTintList = ColorStateList
-//                .valueOf(ContextCompat
-//                    .getColor(this, R.color.btnon))
-//
-//            binding.makananBtn.setTextColor(
-//                ContextCompat
-//                    .getColor(this, R.color.white)
-//            )
-//
-//            binding.minumanBtn.backgroundTintList = ColorStateList
-//                .valueOf(ContextCompat
-//                    .getColor(this, R.color.btnoff))
-//
-//            binding.minumanBtn.setTextColor(
-//                ContextCompat
-//                    .getColor(this, R.color.black)
-//            )
-//            viewModel.getProductByKategori(kategori)
-//        }
-
-////        Button kategori minuman handle
-//        binding.minumanBtn.setOnClickListener {
-//            kategori = "minuman"
-//            binding.makananBtn.backgroundTintList = ColorStateList
-//                .valueOf(ContextCompat
-//                    .getColor(this, R.color.btnoff))
-//
-//            binding.makananBtn.setTextColor(
-//                ContextCompat
-//                    .getColor(this, R.color.black)
-//            )
-//
-//            binding.minumanBtn.backgroundTintList = ColorStateList
-//                .valueOf(ContextCompat
-//                    .getColor(this, R.color.btnon))
-//
-//            binding.minumanBtn.setTextColor(
-//                ContextCompat
-//                    .getColor(this, R.color.white)
-//            )
-//
-//            viewModel.getProductByKategori(kategori)
-//        }
 
 
         val productAdapter = CardProductListAdapter(
@@ -224,9 +177,9 @@ class CashierActivity : AppCompatActivity() {
                 R.id.menu_cart -> {
                     startActivity(Intent(this, CartActivity::class.java))
                 }
-//                R.id.menu_history -> {
-//                    startActivity(Intent(this, HistoryTransaksiActivity::class.java))
-//                }
+                R.id.menu_history -> {
+                    startActivity(Intent(this, HistoryPesananActivity::class.java))
+                }
 //                R.id.menu_laporan -> {
 //                    startActivity(Intent(this, LaporanTransactionActivity::class.java))
 //                }

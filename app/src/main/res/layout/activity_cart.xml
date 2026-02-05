@@ -53,22 +53,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
-                            android:layout_marginBottom="26dp"
+                            android:layout_marginBottom="12dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent" />
 
                         <!-- Note -->
-                        <EditText
-                            android:id="@+id/etNote"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/brown_full_corners_bg"
-                            android:hint="Catatan Tambahan"
-                            android:minHeight="80dp"
-                            android:padding="12dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/rvCart" />
 
                         <!-- Total -->
                         <TextView
@@ -76,10 +65,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
-                            android:text="Total"
+                            android:text="Total Harga"
+                            android:textSize="20sp"
                             android:textStyle="bold"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/etNote" />
+                            app:layout_constraintStart_toStartOf="parent" />
 
                         <TextView
                             android:id="@+id/tvTotal"
@@ -88,61 +77,25 @@
                             android:text="Rp 65.000"
                             android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/etNote" />
+                             />
 
                         <!-- Payment -->
-                        <TextView
-                            android:id="@+id/tvPayment"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:text="Payment"
-                            android:textStyle="bold"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tvTotalLabel" />
 
                         <!-- Gopay -->
-                        <RadioButton
-                            android:id="@+id/rbGopay"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="gopay : 087895031524"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tvPayment" />
 
                         <!-- Upload -->
-                        <Button
-                            android:id="@+id/btnUpload"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:backgroundTint="#EFE6D8"
-                            android:text="📷  Bukti Pembayaran"
-                            android:textColor="#000000"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/rbGopay" />
-
-                        <!-- Buy -->
-                        <ImageView
-                            android:id="@+id/picTf"
-                            android:layout_width="380dp"
-                            android:layout_height="580dp"
-                            tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
                         <Button
                             android:id="@+id/btnBuy"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
-                            android:backgroundTint="#1B5E20"
-                            android:text="Buy"
-                            android:textColor="@android:color/white"
+                            android:backgroundTint="@color/green_medium"
+                            android:text="BAYAR"
+                            android:textColor="@color/black_medium"
                             android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/btnUpload" />
+                            app:layout_constraintStart_toStartOf="parent" />
 
                     </LinearLayout>
                 </androidx.core.widget.NestedScrollView>

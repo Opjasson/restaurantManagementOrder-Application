@@ -172,9 +172,9 @@ class TambahProductActivity : AppCompatActivity() {
                 R.id.menu_cart -> {
                     startActivity(Intent(this, CartActivity::class.java))
                 }
-//                R.id.menu_history -> {
-//                    startActivity(Intent(this, HistoryTransaksiActivity::class.java))
-//                }
+                R.id.menu_history -> {
+                    startActivity(Intent(this, HistoryPesananActivity::class.java))
+                }
 //                R.id.menu_laporan -> {
 //                    startActivity(Intent(this, LaporanTransactionActivity::class.java))
 //                }

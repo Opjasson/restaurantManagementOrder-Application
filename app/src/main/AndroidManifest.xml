@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NasiBakarJoss18Application">
         <activity
+            android:name=".Activity.HistoryPesananActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.CartActivity"
             android:exported="false" />
 
