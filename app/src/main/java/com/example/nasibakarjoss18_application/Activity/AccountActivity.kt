@@ -65,6 +65,10 @@ class AccountActivity : AppCompatActivity() {
 
         }
 
+        binding.goToKasir.setOnClickListener {
+            startActivity(Intent(this, CashierActivity::class.java))
+        }
+
         //        Navigate bottom setting
         binding.bottomNav.setOnItemSelectedListener { item ->
             if (item.itemId == binding.bottomNav.selectedItemId) {
