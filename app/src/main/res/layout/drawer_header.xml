@@ -6,8 +6,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:background="@color/white"
+        android:layout_height="80dp"
+        android:background="@color/orange_light"
         android:gravity="bottom"
         android:orientation="vertical"
         android:padding="16dp"
@@ -19,17 +19,11 @@
             android:id="@+id/tvNameHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nama User"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            android:text="Nasi Bakar Joss 18"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tvEmailHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="email@gmail.com"
-            android:textColor="@android:color/black"
-            android:textSize="14sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
